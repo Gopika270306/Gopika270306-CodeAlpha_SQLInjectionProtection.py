@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SQLGuard Register</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="login-box">
+
+            <h1>
+                <i class="fa-solid fa-user-shield"></i>
+            </h1>
+
+            <h2>Create Account</h2>
+
+            <p>Register for Secure Access</p>
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+
+            {% for message in messages %}
+
+            <div class="alert">
+
+                {{ message }}
+
+            </div>
+
+            {% endfor %}
+
+            {% endif %}
+            {% endwith %}
+
+            <form action="/register_user" method="POST">
+
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Enter Username"
+                    required>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter Email"
+                    required>
+
+                <input
+                    type="text"
+                    name="phone"
+                    placeholder="Enter Phone Number"
+                    required>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter Password"
+                    required>
+
+                <button type="submit">
+
+                    <i class="fa-solid fa-user-plus"></i>
+
+                    Register
+
+                </button>
+
+            </form>
+
+            <br>
+
+            <a href="/login">
+
+                <button class="secondary-btn">
+
+                    Already Have an Account
+
+                </button>
+
+            </a>
+
+            <br><br>
+
+            <a href="/">
+
+                <button class="secondary-btn">
+
+                    Back to Dashboard
+
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

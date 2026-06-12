@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SQLGuard Dashboard</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="sidebar">
+
+        <h2>SQLGuard</h2>
+
+        <ul>
+
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="/login">
+                    <i class="fa fa-user"></i>
+                    Login
+                </a>
+            </li>
+
+            <li>
+                <a href="/register">
+                    <i class="fa fa-user-plus"></i>
+                    Register
+                </a>
+            </li>
+
+            <li>
+                <a href="/testlab">
+                    <i class="fa fa-shield-halved"></i>
+                    SQL Test Lab
+                </a>
+            </li>
+
+            <li>
+                <a href="/logs">
+                    <i class="fa fa-file"></i>
+                    Attack Logs
+                </a>
+            </li>
+
+            <li>
+                <a href="/logout">
+                    <i class="fa fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+    <div class="main">
+
+        <div class="header">
+
+            <h1>
+                SQL Injection Protection Dashboard
+            </h1>
+
+            <p>
+                Secure Authentication & Threat Monitoring
+            </p>
+
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+        {% for message in messages %}
+
+        <div class="alert">
+
+            {{ message }}
+
+        </div>
+
+        {% endfor %}
+
+        {% endif %}
+        {% endwith %}
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h2>
+                    <i class="fa fa-users"></i>
+                </h2>
+
+                <h3>Total Users</h3>
+
+                <p>{{ users }}</p>
+
+            </div>
+
+            <div class="card">
+
+                <h2>
+                    <i class="fa fa-bug"></i>
+                </h2>
+
+                <h3>Detected Attacks</h3>
+
+                <p>{{ attacks }}</p>
+
+            </div>
+
+        </div>
+
+        <div class="table-container">
+
+            <h2>
+                Recent SQL Injection Activity
+            </h2>
+
+            <table>
+
+                <tr>
+
+                    <th>Attack Input</th>
+                    <th>Status</th>
+                    <th>Date & Time</th>
+
+                </tr>
+
+                {% for row in logs %}
+
+                <tr>
+
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[2] }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <div class="quick-links">
+
+            <a href="/login">
+                <button>
+                    Login
+                </button>
+            </a>
+
+            <a href="/register">
+                <button>
+                    Register
+                </button>
+            </a>
+
+            <a href="/testlab">
+                <button>
+                    SQL Test Lab
+                </button>
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

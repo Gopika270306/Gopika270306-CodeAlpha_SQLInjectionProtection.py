@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SQL Injection Test Lab</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="main-container">
+
+        <div class="lab-box">
+
+            <h1>
+                <i class="fa-solid fa-shield-virus"></i>
+            </h1>
+
+            <h2>SQL Injection Test Lab</h2>
+
+            <p>
+                Test SQL Injection payloads and analyze whether
+                SQLGuard detects malicious input.
+            </p>
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+
+            {% for message in messages %}
+
+            <div class="alert">
+                {{ message }}
+            </div>
+
+            {% endfor %}
+
+            {% endif %}
+            {% endwith %}
+
+            <form action="/analyze" method="POST">
+
+                <textarea
+                    name="attack"
+                    rows="6"
+                    placeholder="Enter SQL Query or Attack Pattern..."
+                    required>
+                </textarea>
+
+                <br><br>
+
+                <button type="submit">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    Analyze Input
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <br>
+
+        <div class="examples">
+
+            <h2>
+                <i class="fa-solid fa-bug"></i>
+                Common SQL Injection Payloads
+            </h2>
+
+            <table>
+
+                <tr>
+
+                    <th>Attack Type</th>
+                    <th>Example</th>
+
+                </tr>
+
+                <tr>
+
+                    <td>Authentication Bypass</td>
+
+                    <td>
+                        ' OR '1'='1
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Comment Injection</td>
+
+                    <td>
+                        admin'--
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>UNION Attack</td>
+
+                    <td>
+                        UNION SELECT username,password FROM users
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>DROP TABLE</td>
+
+                    <td>
+                        DROP TABLE users
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>DELETE Attack</td>
+
+                    <td>
+                        DELETE FROM users
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>UPDATE Attack</td>
+
+                    <td>
+                        UPDATE users SET password='hack'
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <br>
+
+        <div class="navigation">
+
+            <a href="/">
+
+                <button>
+
+                    <i class="fa-solid fa-house"></i>
+
+                    Dashboard
+
+                </button>
+
+            </a>
+
+            <a href="/login">
+
+                <button>
+
+                    <i class="fa-solid fa-right-to-bracket"></i>
+
+                    Login
+
+                </button>
+
+            </a>
+
+            <a href="/register">
+
+                <button>
+
+                    <i class="fa-solid fa-user-plus"></i>
+
+                    Register
+
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
